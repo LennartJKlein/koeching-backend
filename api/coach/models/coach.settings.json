@@ -1,0 +1,45 @@
+{
+  "kind": "collectionType",
+  "collectionName": "coaches",
+  "info": {
+    "name": "Coach",
+    "description": "Medewerker bij Koeching",
+    "displayName": "Coaches"
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true,
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "name": {
+      "type": "string",
+      "required": true,
+      "unique": true
+    },
+    "photo": {
+      "model": "file",
+      "via": "related",
+      "allowedTypes": [
+        "images"
+      ],
+      "plugin": "upload",
+      "required": true,
+      "pluginOptions": {}
+    },
+    "bio": {
+      "type": "richtext"
+    },
+    "methodes": {
+      "collection": "method",
+      "via": "coaches",
+      "dominant": true
+    },
+    "products": {
+      "collection": "product",
+      "via": "coaches",
+      "dominant": true
+    }
+  }
+}

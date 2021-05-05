@@ -1,0 +1,26 @@
+{
+  "kind": "collectionType",
+  "collectionName": "collegas",
+  "info": {
+    "name": "Collega",
+    "description": "Externe collega in het vakgebied om naar door te verwijzen",
+    "displayName": "Collega's"
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true,
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "name": {
+      "type": "string",
+      "required": true,
+      "unique": true
+    },
+    "website": {
+      "type": "string",
+      "required": true
+    }
+  }
+}

@@ -1,0 +1,26 @@
+{
+  "kind": "collectionType",
+  "collectionName": "producten",
+  "info": {
+    "name": "Product",
+    "description": "Een product dat kan worden afgenomen bij Koeching",
+    "displayName": "Producten"
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true,
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "Titel": {
+      "type": "string",
+      "required": true,
+      "unique": true
+    },
+    "coaches": {
+      "via": "products",
+      "collection": "coach"
+    }
+  }
+}

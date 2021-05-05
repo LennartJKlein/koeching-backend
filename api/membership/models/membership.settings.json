@@ -1,0 +1,39 @@
+{
+  "kind": "collectionType",
+  "collectionName": "lidmaatschappen",
+  "info": {
+    "name": "Lidmaatschap",
+    "description": "Aangesloten bij een beroepsregister, stichting of vereniging",
+    "displayName": "Lidmaatschappen"
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true,
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "organisation": {
+      "type": "string",
+      "required": true,
+      "unique": false
+    },
+    "membership_id": {
+      "type": "string",
+      "required": false
+    },
+    "website": {
+      "type": "string"
+    },
+    "logo": {
+      "collection": "file",
+      "via": "related",
+      "allowedTypes": [
+        "images"
+      ],
+      "plugin": "upload",
+      "required": false,
+      "pluginOptions": {}
+    }
+  }
+}
