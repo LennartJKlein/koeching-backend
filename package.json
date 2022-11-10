@@ -1,42 +1,31 @@
 {
-  "name": "backend",
+  "name": "koeching-backend",
   "private": true,
   "version": "0.1.0",
   "description": "Backend for the website of Koeching",
   "scripts": {
-    "dev": "strapi develop",
+    "develop": "strapi develop",
     "start": "strapi start",
     "build": "strapi build",
     "strapi": "strapi"
   },
-  "devDependencies": {},
   "dependencies": {
-    "knex": "0.21.18",
-    "pg": "^8.6.0",
-    "pg-connection-string": "^2.5.0",
-    "sqlite3": "5.0.0",
-    "strapi": "3.6.3",
-    "strapi-admin": "3.6.3",
-    "strapi-connector-bookshelf": "3.6.3",
-    "strapi-plugin-content-manager": "3.6.3",
-    "strapi-plugin-content-type-builder": "3.6.3",
-    "strapi-plugin-email": "3.6.3",
-    "strapi-plugin-graphql": "3.6.3",
-    "strapi-plugin-i18n": "3.6.3",
-    "strapi-plugin-upload": "3.6.3",
-    "strapi-plugin-users-permissions": "3.6.3",
-    "strapi-provider-upload-cloudinary": "^3.6.3",
-    "strapi-utils": "3.6.3"
+    "@strapi/plugin-i18n": "4.5.0",
+    "@strapi/plugin-users-permissions": "4.5.0",
+    "@strapi/strapi": "4.5.0",
+    "better-sqlite3": "7.4.6",
+    "pg": "^8.8.0",
+    "pg-connection-string": "^2.5.0"
   },
   "author": {
     "name": "Lennart Klein"
   },
   "strapi": {
-    "uuid": "9d4987ce-7416-412f-ad10-b460273d0995"
+    "uuid": "7a691c75-246a-4b04-8053-a32b3046b310"
   },
   "engines": {
-    "node": ">=10.16.0 <=14.x.x",
-    "npm": "^6.0.0"
+    "node": ">=14.19.1 <=18.x.x",
+    "npm": ">=6.0.0"
   },
   "license": "MIT"
 }

@@ -1,7 +1,0 @@
-query Colleagues {
-  colleagues {
-    id
-    name
-    website
-  }
-}
