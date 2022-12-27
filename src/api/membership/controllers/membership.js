@@ -1,9 +1,9 @@
 'use strict';
 
 /**
- * bericht controller
+ * membership controller
  */
 
 const { createCoreController } = require('@strapi/strapi').factories;
 
-module.exports = createCoreController('api::bericht.bericht');
+module.exports = createCoreController('api::membership.membership');
