@@ -19,6 +19,8 @@ import {
   SetMinMax,
   MediaAttribute,
   RichTextAttribute,
+  TextAttribute,
+  UIDAttribute,
 } from '@strapi/strapi';
 
 export interface AdminPermission extends CollectionTypeSchema {
@@ -579,20 +581,56 @@ export interface PluginUsersPermissionsUser extends CollectionTypeSchema {
   };
 }
 
-export interface ApiMembershipMembership extends CollectionTypeSchema {
+export interface ApiCoachCoach extends CollectionTypeSchema {
   info: {
-    singularName: 'membership';
-    pluralName: 'memberships';
-    displayName: 'Membership';
+    singularName: 'coach';
+    pluralName: 'coaches';
+    displayName: 'Coach';
+    description: '';
   };
   options: {
     draftAndPublish: true;
   };
   attributes: {
-    membership_id: StringAttribute;
+    name: StringAttribute & RequiredAttribute;
+    photos: MediaAttribute & RequiredAttribute;
+    bio: RichTextAttribute;
+    intro: TextAttribute;
+    slug: UIDAttribute<'api::coach.coach', 'name'> & RequiredAttribute;
+    createdAt: DateTimeAttribute;
+    updatedAt: DateTimeAttribute;
+    publishedAt: DateTimeAttribute;
+    createdBy: RelationAttribute<
+      'api::coach.coach',
+      'oneToOne',
+      'admin::user'
+    > &
+      PrivateAttribute;
+    updatedBy: RelationAttribute<
+      'api::coach.coach',
+      'oneToOne',
+      'admin::user'
+    > &
+      PrivateAttribute;
+  };
+}
+
+export interface ApiMembershipMembership extends CollectionTypeSchema {
+  info: {
+    singularName: 'membership';
+    pluralName: 'memberships';
+    displayName: 'Membership';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
     organisation: StringAttribute;
+    membership_id: StringAttribute;
     url: StringAttribute;
     logo: MediaAttribute;
+    slug: UIDAttribute<'api::membership.membership', 'organisation'>;
     createdAt: DateTimeAttribute;
     updatedAt: DateTimeAttribute;
     publishedAt: DateTimeAttribute;
@@ -622,17 +660,18 @@ export interface ApiMessageMessage extends CollectionTypeSchema {
     draftAndPublish: true;
   };
   attributes: {
-    content: RichTextAttribute;
     title: StringAttribute;
     media: MediaAttribute;
-    seo_title: StringAttribute;
-    seo_description: StringAttribute;
-    seo_keywords: StringAttribute;
+    content: RichTextAttribute;
     author: RelationAttribute<
       'api::message.message',
       'oneToOne',
       'admin::user'
     >;
+    seo_title: StringAttribute;
+    seo_description: StringAttribute;
+    seo_keywords: StringAttribute;
+    slug: UIDAttribute<'api::message.message', 'title'>;
     createdAt: DateTimeAttribute;
     updatedAt: DateTimeAttribute;
     publishedAt: DateTimeAttribute;
@@ -665,6 +704,7 @@ declare global {
       'plugin::users-permissions.permission': PluginUsersPermissionsPermission;
       'plugin::users-permissions.role': PluginUsersPermissionsRole;
       'plugin::users-permissions.user': PluginUsersPermissionsUser;
+      'api::coach.coach': ApiCoachCoach;
       'api::membership.membership': ApiMembershipMembership;
       'api::message.message': ApiMessageMessage;
     }
