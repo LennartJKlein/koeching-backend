@@ -11,6 +11,7 @@
     "types": "strapi ts:generate-types"
   },
   "dependencies": {
+    "@retikolo/drag-drop-content-types": "^1.2.1",
     "@strapi/plugin-i18n": "4.5.3",
     "@strapi/plugin-users-permissions": "4.5.3",
     "@strapi/provider-upload-cloudinary": "^4.5.3",

@@ -12,7 +12,7 @@
   },
   "pluginOptions": {},
   "attributes": {
-    "organisation": {
+    "name": {
       "type": "string"
     },
     "membership_id": {
@@ -30,8 +30,10 @@
       ]
     },
     "slug": {
-      "type": "uid",
-      "targetField": "organisation"
+      "type": "uid"
+    },
+    "rank": {
+      "type": "integer"
     }
   }
 }

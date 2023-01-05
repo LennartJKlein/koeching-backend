@@ -18,9 +18,9 @@ import {
   DecimalAttribute,
   SetMinMax,
   MediaAttribute,
+  UIDAttribute,
   RichTextAttribute,
   TextAttribute,
-  UIDAttribute,
 } from '@strapi/strapi';
 
 export interface AdminPermission extends CollectionTypeSchema {
@@ -581,6 +581,37 @@ export interface PluginUsersPermissionsUser extends CollectionTypeSchema {
   };
 }
 
+export interface ApiAnimalAnimal extends CollectionTypeSchema {
+  info: {
+    singularName: 'animal';
+    pluralName: 'animals';
+    displayName: 'Animal';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    name: StringAttribute;
+    photos: MediaAttribute;
+    slug: UIDAttribute<'api::animal.animal', 'name'> & RequiredAttribute;
+    createdAt: DateTimeAttribute;
+    updatedAt: DateTimeAttribute;
+    publishedAt: DateTimeAttribute;
+    createdBy: RelationAttribute<
+      'api::animal.animal',
+      'oneToOne',
+      'admin::user'
+    > &
+      PrivateAttribute;
+    updatedBy: RelationAttribute<
+      'api::animal.animal',
+      'oneToOne',
+      'admin::user'
+    > &
+      PrivateAttribute;
+  };
+}
+
 export interface ApiCoachCoach extends CollectionTypeSchema {
   info: {
     singularName: 'coach';
@@ -704,6 +735,7 @@ declare global {
       'plugin::users-permissions.permission': PluginUsersPermissionsPermission;
       'plugin::users-permissions.role': PluginUsersPermissionsRole;
       'plugin::users-permissions.user': PluginUsersPermissionsUser;
+      'api::animal.animal': ApiAnimalAnimal;
       'api::coach.coach': ApiCoachCoach;
       'api::membership.membership': ApiMembershipMembership;
       'api::message.message': ApiMessageMessage;

@@ -1,10 +1,10 @@
 {
   "kind": "collectionType",
-  "collectionName": "coaches",
+  "collectionName": "animals",
   "info": {
-    "singularName": "coach",
-    "pluralName": "coaches",
-    "displayName": "Coach",
+    "singularName": "animal",
+    "pluralName": "animals",
+    "displayName": "Dier",
     "description": ""
   },
   "options": {
@@ -13,28 +13,23 @@
   "pluginOptions": {},
   "attributes": {
     "name": {
-      "type": "string",
-      "required": true,
-      "unique": false
+      "type": "string"
     },
     "photos": {
       "type": "media",
       "multiple": true,
-      "required": true,
+      "required": false,
       "allowedTypes": [
         "images"
       ]
     },
-    "bio": {
-      "type": "richtext"
-    },
-    "intro": {
-      "type": "text"
-    },
     "slug": {
       "type": "uid",
-      "required": true,
-      "targetField": "name"
+      "targetField": "name",
+      "required": true
+    },
+    "bio": {
+      "type": "richtext"
     },
     "rank": {
       "type": "integer"
