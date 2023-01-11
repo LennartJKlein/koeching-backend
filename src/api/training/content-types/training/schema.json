@@ -16,7 +16,7 @@
       "type": "string",
       "required": true
     },
-    "Moments": {
+    "moments": {
       "type": "component",
       "repeatable": true,
       "component": "details.moment"
@@ -32,6 +32,56 @@
       "relation": "manyToMany",
       "target": "api::intervention.intervention",
       "mappedBy": "trainings"
+    },
+    "photos": {
+      "type": "media",
+      "multiple": true,
+      "required": false,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ]
+    },
+    "pricing": {
+      "type": "component",
+      "repeatable": true,
+      "component": "details.price"
+    },
+    "location": {
+      "type": "string"
+    },
+    "slug": {
+      "type": "uid",
+      "targetField": "name",
+      "required": true
+    },
+    "seo_description": {
+      "type": "string"
+    },
+    "seo_title": {
+      "type": "string"
+    },
+    "intro": {
+      "type": "text"
+    },
+    "thumbnail": {
+      "type": "media",
+      "multiple": false,
+      "required": true,
+      "allowedTypes": [
+        "images"
+      ]
+    },
+    "seo_keywords": {
+      "type": "component",
+      "repeatable": true,
+      "component": "details.keywords",
+      "max": 5
+    },
+    "rank": {
+      "type": "integer"
     }
   }
 }

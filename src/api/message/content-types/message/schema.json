@@ -41,12 +41,15 @@
     "seo_description": {
       "type": "string"
     },
-    "seo_keywords": {
-      "type": "string"
-    },
     "slug": {
       "type": "uid",
       "targetField": "title"
+    },
+    "seo_keywords": {
+      "type": "component",
+      "repeatable": true,
+      "component": "details.keywords",
+      "max": 5
     }
   }
 }

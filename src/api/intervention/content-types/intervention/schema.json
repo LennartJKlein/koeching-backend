@@ -44,6 +44,9 @@
       "relation": "manyToMany",
       "target": "api::training.training",
       "inversedBy": "interventions"
+    },
+    "rank": {
+      "type": "integer"
     }
   }
 }

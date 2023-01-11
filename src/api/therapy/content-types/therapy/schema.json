@@ -27,6 +27,59 @@
       "relation": "manyToMany",
       "target": "api::intervention.intervention",
       "mappedBy": "therapies"
+    },
+    "content": {
+      "type": "richtext"
+    },
+    "photos": {
+      "type": "media",
+      "multiple": true,
+      "required": false,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ]
+    },
+    "seo_title": {
+      "type": "string"
+    },
+    "seo_description": {
+      "type": "string"
+    },
+    "intro": {
+      "type": "text"
+    },
+    "pricing": {
+      "type": "component",
+      "repeatable": true,
+      "component": "details.price"
+    },
+    "location": {
+      "type": "string"
+    },
+    "thumbnail": {
+      "type": "media",
+      "multiple": false,
+      "required": true,
+      "allowedTypes": [
+        "images"
+      ]
+    },
+    "slug": {
+      "type": "uid",
+      "targetField": "name",
+      "required": true
+    },
+    "seo_keywords": {
+      "type": "component",
+      "repeatable": true,
+      "component": "details.keywords",
+      "max": 5
+    },
+    "rank": {
+      "type": "integer"
     }
   }
 }

@@ -21,9 +21,6 @@
     "content": {
       "type": "richtext"
     },
-    "seo_keywords": {
-      "type": "string"
-    },
     "seo_description": {
       "type": "string"
     },
@@ -42,11 +39,37 @@
       "target": "api::intervention.intervention",
       "inversedBy": "coachings"
     },
-    "Pricing": {
+    "pricing": {
       "displayName": "Price",
       "type": "component",
       "repeatable": true,
       "component": "details.price"
+    },
+    "location": {
+      "type": "string"
+    },
+    "slug": {
+      "type": "uid",
+      "targetField": "name",
+      "required": true
+    },
+    "photos": {
+      "type": "media",
+      "multiple": true,
+      "required": false,
+      "allowedTypes": [
+        "images",
+        "videos"
+      ]
+    },
+    "seo_keywords": {
+      "type": "component",
+      "repeatable": true,
+      "component": "details.keywords",
+      "max": 5
+    },
+    "rank": {
+      "type": "integer"
     }
   }
 }

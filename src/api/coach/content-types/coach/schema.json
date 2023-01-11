@@ -61,7 +61,7 @@
       "type": "relation",
       "relation": "manyToMany",
       "target": "api::training.training",
-      "inversedBy": "coaches"
+      "mappedBy": "coaches"
     }
   }
 }

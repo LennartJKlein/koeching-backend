@@ -1,0 +1,14 @@
+{
+  "collectionName": "components_details_keywords",
+  "info": {
+    "displayName": "Sleutelwoorden",
+    "icon": "tags",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "keyword": {
+      "type": "string"
+    }
+  }
+}

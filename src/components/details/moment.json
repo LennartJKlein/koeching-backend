@@ -2,11 +2,12 @@
   "collectionName": "components_details_moments",
   "info": {
     "displayName": "Moment",
-    "icon": "calendar-day"
+    "icon": "calendar-day",
+    "description": ""
   },
   "options": {},
   "attributes": {
-    "Date": {
+    "date": {
       "type": "datetime"
     }
   }

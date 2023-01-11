@@ -16,7 +16,7 @@
       "type": "string",
       "required": true
     },
-    "Moments": {
+    "moments": {
       "type": "component",
       "repeatable": true,
       "component": "details.moment"
@@ -32,6 +32,52 @@
       "relation": "manyToMany",
       "target": "api::intervention.intervention",
       "mappedBy": "seminars"
+    },
+    "intro": {
+      "type": "text"
+    },
+    "seo_description": {
+      "type": "string"
+    },
+    "seo_title": {
+      "type": "string"
+    },
+    "slug": {
+      "type": "uid",
+      "targetField": "name",
+      "required": true
+    },
+    "thumbnail": {
+      "type": "media",
+      "multiple": false,
+      "required": true,
+      "allowedTypes": [
+        "images"
+      ]
+    },
+    "photos": {
+      "type": "media",
+      "multiple": true,
+      "required": false,
+      "allowedTypes": [
+        "images",
+        "videos"
+      ]
+    },
+    "pricing": {
+      "type": "component",
+      "repeatable": true,
+      "component": "details.price"
+    },
+    "seo_keywords": {
+      "displayName": "keywords",
+      "type": "component",
+      "repeatable": true,
+      "component": "details.keywords",
+      "max": 5
+    },
+    "rank": {
+      "type": "integer"
     }
   }
 }
