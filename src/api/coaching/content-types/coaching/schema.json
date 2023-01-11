@@ -1,0 +1,52 @@
+{
+  "kind": "collectionType",
+  "collectionName": "coachings",
+  "info": {
+    "singularName": "coaching",
+    "pluralName": "coachings",
+    "displayName": "Coaching",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "name": {
+      "type": "string"
+    },
+    "intro": {
+      "type": "text"
+    },
+    "content": {
+      "type": "richtext"
+    },
+    "seo_keywords": {
+      "type": "string"
+    },
+    "seo_description": {
+      "type": "string"
+    },
+    "seo_title": {
+      "type": "string"
+    },
+    "coaches": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::coach.coach",
+      "inversedBy": "coachings"
+    },
+    "interventions": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::intervention.intervention",
+      "inversedBy": "coachings"
+    },
+    "Pricing": {
+      "displayName": "Price",
+      "type": "component",
+      "repeatable": true,
+      "component": "details.price"
+    }
+  }
+}

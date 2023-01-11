@@ -1,0 +1,37 @@
+{
+  "kind": "collectionType",
+  "collectionName": "seminars",
+  "info": {
+    "singularName": "seminar",
+    "pluralName": "seminars",
+    "displayName": "Seminar",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "name": {
+      "type": "string",
+      "required": true
+    },
+    "Moments": {
+      "type": "component",
+      "repeatable": true,
+      "component": "details.moment"
+    },
+    "coaches": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::coach.coach",
+      "inversedBy": "seminars"
+    },
+    "interventions": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::intervention.intervention",
+      "inversedBy": "seminars"
+    }
+  }
+}

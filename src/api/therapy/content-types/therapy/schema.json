@@ -1,0 +1,32 @@
+{
+  "kind": "collectionType",
+  "collectionName": "therapies",
+  "info": {
+    "singularName": "therapy",
+    "pluralName": "therapies",
+    "displayName": "Therapy",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "name": {
+      "type": "string",
+      "required": true
+    },
+    "coaches": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::coach.coach",
+      "inversedBy": "therapies"
+    },
+    "interventions": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::intervention.intervention",
+      "inversedBy": "therapies"
+    }
+  }
+}

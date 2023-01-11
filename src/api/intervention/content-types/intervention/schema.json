@@ -1,11 +1,10 @@
 {
   "kind": "collectionType",
-  "collectionName": "coaches",
+  "collectionName": "interventions",
   "info": {
-    "singularName": "coach",
-    "pluralName": "coaches",
-    "displayName": "Coach",
-    "description": ""
+    "singularName": "intervention",
+    "pluralName": "interventions",
+    "displayName": "Intervention"
   },
   "options": {
     "draftAndPublish": true
@@ -14,54 +13,36 @@
   "attributes": {
     "name": {
       "type": "string",
-      "required": true,
-      "unique": false
-    },
-    "photos": {
-      "type": "media",
-      "multiple": true,
-      "required": true,
-      "allowedTypes": [
-        "images"
-      ]
-    },
-    "bio": {
-      "type": "richtext"
-    },
-    "intro": {
-      "type": "text"
+      "required": true
     },
     "slug": {
       "type": "uid",
-      "required": true,
-      "targetField": "name"
-    },
-    "rank": {
-      "type": "integer"
+      "targetField": "name",
+      "required": true
     },
     "coachings": {
       "type": "relation",
       "relation": "manyToMany",
       "target": "api::coaching.coaching",
-      "mappedBy": "coaches"
+      "inversedBy": "interventions"
     },
     "seminars": {
       "type": "relation",
       "relation": "manyToMany",
       "target": "api::seminar.seminar",
-      "inversedBy": "coaches"
+      "inversedBy": "interventions"
     },
     "therapies": {
       "type": "relation",
       "relation": "manyToMany",
       "target": "api::therapy.therapy",
-      "inversedBy": "coaches"
+      "inversedBy": "interventions"
     },
     "trainings": {
       "type": "relation",
       "relation": "manyToMany",
       "target": "api::training.training",
-      "inversedBy": "coaches"
+      "inversedBy": "interventions"
     }
   }
 }

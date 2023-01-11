@@ -1,0 +1,13 @@
+{
+  "collectionName": "components_details_moments",
+  "info": {
+    "displayName": "Moment",
+    "icon": "calendar-day"
+  },
+  "options": {},
+  "attributes": {
+    "Date": {
+      "type": "datetime"
+    }
+  }
+}
