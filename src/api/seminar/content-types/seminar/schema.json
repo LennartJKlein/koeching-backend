@@ -4,7 +4,7 @@
   "info": {
     "singularName": "seminar",
     "pluralName": "seminars",
-    "displayName": "Seminar",
+    "displayName": "Informatieavond",
     "description": ""
   },
   "options": {
@@ -31,7 +31,7 @@
       "type": "relation",
       "relation": "manyToMany",
       "target": "api::intervention.intervention",
-      "inversedBy": "seminars"
+      "mappedBy": "seminars"
     }
   }
 }

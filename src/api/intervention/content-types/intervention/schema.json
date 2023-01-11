@@ -4,7 +4,8 @@
   "info": {
     "singularName": "intervention",
     "pluralName": "interventions",
-    "displayName": "Intervention"
+    "displayName": "Interventie",
+    "description": ""
   },
   "options": {
     "draftAndPublish": true
@@ -24,7 +25,7 @@
       "type": "relation",
       "relation": "manyToMany",
       "target": "api::coaching.coaching",
-      "inversedBy": "interventions"
+      "mappedBy": "interventions"
     },
     "seminars": {
       "type": "relation",
