@@ -1,0 +1,81 @@
+{
+  "kind": "collectionType",
+  "collectionName": "programs",
+  "info": {
+    "singularName": "program",
+    "pluralName": "programs",
+    "displayName": "Program",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "name": {
+      "type": "string",
+      "required": true
+    },
+    "intro": {
+      "type": "string"
+    },
+    "content": {
+      "type": "richtext"
+    },
+    "seo_title": {
+      "type": "string"
+    },
+    "seo_description": {
+      "type": "string"
+    },
+    "coaches": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::coach.coach",
+      "inversedBy": "programs"
+    },
+    "interventies": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::intervention.intervention",
+      "inversedBy": "programs"
+    },
+    "pricing": {
+      "type": "component",
+      "repeatable": true,
+      "component": "details.price"
+    },
+    "location": {
+      "type": "string"
+    },
+    "slug": {
+      "type": "uid",
+      "targetField": "name"
+    },
+    "photos": {
+      "type": "media",
+      "multiple": true,
+      "required": false,
+      "allowedTypes": [
+        "images"
+      ]
+    },
+    "seo_keywords": {
+      "type": "component",
+      "repeatable": true,
+      "component": "details.keywords",
+      "max": 5
+    },
+    "rank": {
+      "type": "integer"
+    },
+    "thumbnail": {
+      "type": "media",
+      "multiple": false,
+      "required": true,
+      "allowedTypes": [
+        "images"
+      ]
+    }
+  }
+}

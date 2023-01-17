@@ -62,6 +62,12 @@
       "relation": "manyToMany",
       "target": "api::training.training",
       "mappedBy": "coaches"
+    },
+    "programs": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::program.program",
+      "mappedBy": "coaches"
     }
   }
 }
