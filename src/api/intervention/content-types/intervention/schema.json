@@ -84,6 +84,12 @@
     },
     "intro": {
       "type": "text"
+    },
+    "coaches": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::coach.coach",
+      "mappedBy": "interventions"
     }
   }
 }
