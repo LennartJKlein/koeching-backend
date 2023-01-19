@@ -79,6 +79,9 @@
       "relation": "manyToMany",
       "target": "api::pricing.pricing",
       "inversedBy": "seminars"
+    },
+    "content": {
+      "type": "richtext"
     }
   }
 }

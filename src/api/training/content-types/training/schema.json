@@ -83,6 +83,9 @@
       "relation": "manyToMany",
       "target": "api::pricing.pricing",
       "inversedBy": "trainings"
+    },
+    "content": {
+      "type": "richtext"
     }
   }
 }
