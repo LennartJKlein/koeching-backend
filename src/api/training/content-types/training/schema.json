@@ -44,11 +44,6 @@
         "audios"
       ]
     },
-    "pricing": {
-      "type": "component",
-      "repeatable": true,
-      "component": "details.price"
-    },
     "location": {
       "type": "string"
     },
@@ -82,6 +77,12 @@
     },
     "rank": {
       "type": "integer"
+    },
+    "pricings": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::pricing.pricing",
+      "inversedBy": "trainings"
     }
   }
 }

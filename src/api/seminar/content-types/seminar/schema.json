@@ -64,11 +64,6 @@
         "videos"
       ]
     },
-    "pricing": {
-      "type": "component",
-      "repeatable": true,
-      "component": "details.price"
-    },
     "seo_keywords": {
       "displayName": "keywords",
       "type": "component",
@@ -78,6 +73,12 @@
     },
     "rank": {
       "type": "integer"
+    },
+    "pricings": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::pricing.pricing",
+      "inversedBy": "seminars"
     }
   }
 }

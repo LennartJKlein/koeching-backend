@@ -4,7 +4,7 @@
   "info": {
     "singularName": "program",
     "pluralName": "programs",
-    "displayName": "Program",
+    "displayName": "Traject",
     "description": ""
   },
   "options": {
@@ -17,7 +17,7 @@
       "required": true
     },
     "intro": {
-      "type": "string"
+      "type": "text"
     },
     "content": {
       "type": "richtext"
@@ -39,11 +39,6 @@
       "relation": "manyToMany",
       "target": "api::intervention.intervention",
       "inversedBy": "programs"
-    },
-    "pricing": {
-      "type": "component",
-      "repeatable": true,
-      "component": "details.price"
     },
     "location": {
       "type": "string"
@@ -76,6 +71,12 @@
       "allowedTypes": [
         "images"
       ]
+    },
+    "pricings": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::pricing.pricing",
+      "mappedBy": "programs"
     }
   }
 }

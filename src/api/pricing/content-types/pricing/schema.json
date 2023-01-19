@@ -1,0 +1,46 @@
+{
+  "kind": "collectionType",
+  "collectionName": "pricings",
+  "info": {
+    "singularName": "pricing",
+    "pluralName": "pricings",
+    "displayName": "Tarief",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "description": {
+      "type": "string",
+      "required": true,
+      "default": "--- euro per sessie van --- uur",
+      "unique": true
+    },
+    "programs": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::program.program",
+      "inversedBy": "pricings"
+    },
+    "trainings": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::training.training",
+      "mappedBy": "pricings"
+    },
+    "seminars": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::seminar.seminar",
+      "mappedBy": "pricings"
+    },
+    "interventions": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::intervention.intervention",
+      "mappedBy": "pricings"
+    }
+  }
+}

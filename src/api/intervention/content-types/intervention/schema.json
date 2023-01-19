@@ -66,11 +66,6 @@
       "component": "details.keywords",
       "max": 5
     },
-    "pricing": {
-      "type": "component",
-      "repeatable": true,
-      "component": "details.price"
-    },
     "thumbnail": {
       "type": "media",
       "multiple": false,
@@ -92,6 +87,12 @@
     },
     "location": {
       "type": "string"
+    },
+    "pricings": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::pricing.pricing",
+      "inversedBy": "interventions"
     }
   }
 }
