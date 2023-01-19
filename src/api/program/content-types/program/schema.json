@@ -34,7 +34,7 @@
       "target": "api::coach.coach",
       "inversedBy": "programs"
     },
-    "interventies": {
+    "interventions": {
       "type": "relation",
       "relation": "manyToMany",
       "target": "api::intervention.intervention",

@@ -48,12 +48,6 @@
     "rank": {
       "type": "integer"
     },
-    "programs": {
-      "type": "relation",
-      "relation": "manyToMany",
-      "target": "api::program.program",
-      "mappedBy": "interventies"
-    },
     "seo_title": {
       "type": "string"
     },
@@ -93,6 +87,12 @@
       "relation": "manyToMany",
       "target": "api::pricing.pricing",
       "inversedBy": "interventions"
+    },
+    "programs": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::program.program",
+      "mappedBy": "interventions"
     }
   }
 }
