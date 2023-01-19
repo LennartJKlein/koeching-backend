@@ -81,6 +81,9 @@
       "relation": "manyToMany",
       "target": "api::program.program",
       "mappedBy": "interventions"
+    },
+    "intro": {
+      "type": "text"
     }
   }
 }
