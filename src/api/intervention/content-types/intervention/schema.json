@@ -21,22 +21,10 @@
       "targetField": "name",
       "required": true
     },
-    "coachings": {
-      "type": "relation",
-      "relation": "manyToMany",
-      "target": "api::coaching.coaching",
-      "mappedBy": "interventions"
-    },
     "seminars": {
       "type": "relation",
       "relation": "manyToMany",
       "target": "api::seminar.seminar",
-      "inversedBy": "interventions"
-    },
-    "therapies": {
-      "type": "relation",
-      "relation": "manyToMany",
-      "target": "api::therapy.therapy",
       "inversedBy": "interventions"
     },
     "trainings": {
