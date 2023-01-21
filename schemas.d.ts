@@ -21,6 +21,7 @@ import {
   UIDAttribute,
   RichTextAttribute,
   TextAttribute,
+  SingleTypeSchema,
   ComponentAttribute,
   ComponentSchema,
 } from '@strapi/strapi';
@@ -634,25 +635,25 @@ export interface ApiCoachCoach extends CollectionTypeSchema {
     intro: TextAttribute;
     slug: UIDAttribute<'api::coach.coach', 'name'> & RequiredAttribute;
     rank: IntegerAttribute;
-    coachings: RelationAttribute<
-      'api::coach.coach',
-      'manyToMany',
-      'api::coaching.coaching'
-    >;
     seminars: RelationAttribute<
       'api::coach.coach',
       'manyToMany',
       'api::seminar.seminar'
     >;
-    therapies: RelationAttribute<
-      'api::coach.coach',
-      'manyToMany',
-      'api::therapy.therapy'
-    >;
     trainings: RelationAttribute<
       'api::coach.coach',
       'manyToMany',
       'api::training.training'
+    >;
+    programs: RelationAttribute<
+      'api::coach.coach',
+      'manyToMany',
+      'api::program.program'
+    >;
+    interventions: RelationAttribute<
+      'api::coach.coach',
+      'manyToMany',
+      'api::intervention.intervention'
     >;
     createdAt: DateTimeAttribute;
     updatedAt: DateTimeAttribute;
@@ -672,56 +673,26 @@ export interface ApiCoachCoach extends CollectionTypeSchema {
   };
 }
 
-export interface ApiCoachingCoaching extends CollectionTypeSchema {
+export interface ApiFarmFarm extends SingleTypeSchema {
   info: {
-    singularName: 'coaching';
-    pluralName: 'coachings';
-    displayName: 'Begeleiding';
-    description: '';
+    singularName: 'farm';
+    pluralName: 'farms';
+    displayName: 'Boerderij';
   };
   options: {
     draftAndPublish: true;
   };
   attributes: {
     name: StringAttribute;
-    intro: TextAttribute;
     content: RichTextAttribute;
-    seo_description: StringAttribute;
-    seo_title: StringAttribute;
-    coaches: RelationAttribute<
-      'api::coaching.coaching',
-      'manyToMany',
-      'api::coach.coach'
-    >;
-    interventions: RelationAttribute<
-      'api::coaching.coaching',
-      'manyToMany',
-      'api::intervention.intervention'
-    >;
-    pricing: ComponentAttribute<'details.price', true>;
-    location: StringAttribute;
-    slug: UIDAttribute<'api::coaching.coaching', 'name'> & RequiredAttribute;
     photos: MediaAttribute;
-    seo_keywords: ComponentAttribute<'details.keywords', true> &
-      SetMinMax<{
-        max: 5;
-      }>;
-    rank: IntegerAttribute;
-    thumbnail: MediaAttribute & RequiredAttribute;
+    intro: TextAttribute;
     createdAt: DateTimeAttribute;
     updatedAt: DateTimeAttribute;
     publishedAt: DateTimeAttribute;
-    createdBy: RelationAttribute<
-      'api::coaching.coaching',
-      'oneToOne',
-      'admin::user'
-    > &
+    createdBy: RelationAttribute<'api::farm.farm', 'oneToOne', 'admin::user'> &
       PrivateAttribute;
-    updatedBy: RelationAttribute<
-      'api::coaching.coaching',
-      'oneToOne',
-      'admin::user'
-    > &
+    updatedBy: RelationAttribute<'api::farm.farm', 'oneToOne', 'admin::user'> &
       PrivateAttribute;
   };
 }
@@ -740,20 +711,10 @@ export interface ApiInterventionIntervention extends CollectionTypeSchema {
     name: StringAttribute & RequiredAttribute;
     slug: UIDAttribute<'api::intervention.intervention', 'name'> &
       RequiredAttribute;
-    coachings: RelationAttribute<
-      'api::intervention.intervention',
-      'manyToMany',
-      'api::coaching.coaching'
-    >;
     seminars: RelationAttribute<
       'api::intervention.intervention',
       'manyToMany',
       'api::seminar.seminar'
-    >;
-    therapies: RelationAttribute<
-      'api::intervention.intervention',
-      'manyToMany',
-      'api::therapy.therapy'
     >;
     trainings: RelationAttribute<
       'api::intervention.intervention',
@@ -761,6 +722,32 @@ export interface ApiInterventionIntervention extends CollectionTypeSchema {
       'api::training.training'
     >;
     rank: IntegerAttribute;
+    seo_title: StringAttribute;
+    seo_description: StringAttribute;
+    seo_keywords: ComponentAttribute<'details.keywords', true> &
+      SetMinMax<{
+        max: 5;
+      }>;
+    thumbnail: MediaAttribute & RequiredAttribute;
+    photos: MediaAttribute;
+    content: RichTextAttribute;
+    location: StringAttribute;
+    pricings: RelationAttribute<
+      'api::intervention.intervention',
+      'manyToMany',
+      'api::pricing.pricing'
+    >;
+    programs: RelationAttribute<
+      'api::intervention.intervention',
+      'manyToMany',
+      'api::program.program'
+    >;
+    intro: TextAttribute;
+    coaches: RelationAttribute<
+      'api::intervention.intervention',
+      'manyToMany',
+      'api::coach.coach'
+    >;
     createdAt: DateTimeAttribute;
     updatedAt: DateTimeAttribute;
     publishedAt: DateTimeAttribute;
@@ -783,7 +770,7 @@ export interface ApiMembershipMembership extends CollectionTypeSchema {
   info: {
     singularName: 'membership';
     pluralName: 'memberships';
-    displayName: 'Membership';
+    displayName: 'Lidmaatschap';
     description: '';
   };
   options: {
@@ -794,7 +781,8 @@ export interface ApiMembershipMembership extends CollectionTypeSchema {
     membership_id: StringAttribute;
     url: StringAttribute;
     logo: MediaAttribute;
-    slug: UIDAttribute;
+    slug: UIDAttribute<'api::membership.membership', 'name'> &
+      RequiredAttribute;
     rank: IntegerAttribute;
     createdAt: DateTimeAttribute;
     updatedAt: DateTimeAttribute;
@@ -818,7 +806,7 @@ export interface ApiMessageMessage extends CollectionTypeSchema {
   info: {
     singularName: 'message';
     pluralName: 'messages';
-    displayName: 'Bericht';
+    displayName: 'Nieuwsbericht';
     description: '';
   };
   options: {
@@ -858,6 +846,117 @@ export interface ApiMessageMessage extends CollectionTypeSchema {
   };
 }
 
+export interface ApiPricingPricing extends CollectionTypeSchema {
+  info: {
+    singularName: 'pricing';
+    pluralName: 'pricings';
+    displayName: 'Tarief';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    description: StringAttribute &
+      RequiredAttribute &
+      UniqueAttribute &
+      DefaultTo<'--- euro per sessie van --- uur'>;
+    programs: RelationAttribute<
+      'api::pricing.pricing',
+      'manyToMany',
+      'api::program.program'
+    >;
+    trainings: RelationAttribute<
+      'api::pricing.pricing',
+      'manyToMany',
+      'api::training.training'
+    >;
+    seminars: RelationAttribute<
+      'api::pricing.pricing',
+      'manyToMany',
+      'api::seminar.seminar'
+    >;
+    interventions: RelationAttribute<
+      'api::pricing.pricing',
+      'manyToMany',
+      'api::intervention.intervention'
+    >;
+    createdAt: DateTimeAttribute;
+    updatedAt: DateTimeAttribute;
+    publishedAt: DateTimeAttribute;
+    createdBy: RelationAttribute<
+      'api::pricing.pricing',
+      'oneToOne',
+      'admin::user'
+    > &
+      PrivateAttribute;
+    updatedBy: RelationAttribute<
+      'api::pricing.pricing',
+      'oneToOne',
+      'admin::user'
+    > &
+      PrivateAttribute;
+  };
+}
+
+export interface ApiProgramProgram extends CollectionTypeSchema {
+  info: {
+    singularName: 'program';
+    pluralName: 'programs';
+    displayName: 'Traject';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    name: StringAttribute & RequiredAttribute;
+    intro: TextAttribute;
+    content: RichTextAttribute;
+    seo_title: StringAttribute;
+    seo_description: StringAttribute;
+    coaches: RelationAttribute<
+      'api::program.program',
+      'manyToMany',
+      'api::coach.coach'
+    >;
+    interventions: RelationAttribute<
+      'api::program.program',
+      'manyToMany',
+      'api::intervention.intervention'
+    >;
+    location: StringAttribute;
+    slug: UIDAttribute<'api::program.program', 'name'>;
+    photos: MediaAttribute;
+    seo_keywords: ComponentAttribute<'details.keywords', true> &
+      SetMinMax<{
+        max: 5;
+      }>;
+    rank: IntegerAttribute;
+    thumbnail: MediaAttribute & RequiredAttribute;
+    pricings: RelationAttribute<
+      'api::program.program',
+      'manyToMany',
+      'api::pricing.pricing'
+    >;
+    createdAt: DateTimeAttribute;
+    updatedAt: DateTimeAttribute;
+    publishedAt: DateTimeAttribute;
+    createdBy: RelationAttribute<
+      'api::program.program',
+      'oneToOne',
+      'admin::user'
+    > &
+      PrivateAttribute;
+    updatedBy: RelationAttribute<
+      'api::program.program',
+      'oneToOne',
+      'admin::user'
+    > &
+      PrivateAttribute;
+  };
+}
+
 export interface ApiSeminarSeminar extends CollectionTypeSchema {
   info: {
     singularName: 'seminar';
@@ -887,77 +986,28 @@ export interface ApiSeminarSeminar extends CollectionTypeSchema {
     slug: UIDAttribute<'api::seminar.seminar', 'name'> & RequiredAttribute;
     thumbnail: MediaAttribute & RequiredAttribute;
     photos: MediaAttribute;
-    pricing: ComponentAttribute<'details.price', true>;
     seo_keywords: ComponentAttribute<'details.keywords', true> &
       SetMinMax<{
         max: 5;
       }>;
     rank: IntegerAttribute;
-    createdAt: DateTimeAttribute;
-    updatedAt: DateTimeAttribute;
-    publishedAt: DateTimeAttribute;
-    createdBy: RelationAttribute<
+    pricings: RelationAttribute<
       'api::seminar.seminar',
-      'oneToOne',
-      'admin::user'
-    > &
-      PrivateAttribute;
-    updatedBy: RelationAttribute<
-      'api::seminar.seminar',
-      'oneToOne',
-      'admin::user'
-    > &
-      PrivateAttribute;
-  };
-}
-
-export interface ApiTherapyTherapy extends CollectionTypeSchema {
-  info: {
-    singularName: 'therapy';
-    pluralName: 'therapies';
-    displayName: 'Therapie';
-    description: '';
-  };
-  options: {
-    draftAndPublish: true;
-  };
-  attributes: {
-    name: StringAttribute & RequiredAttribute;
-    coaches: RelationAttribute<
-      'api::therapy.therapy',
       'manyToMany',
-      'api::coach.coach'
-    >;
-    interventions: RelationAttribute<
-      'api::therapy.therapy',
-      'manyToMany',
-      'api::intervention.intervention'
+      'api::pricing.pricing'
     >;
     content: RichTextAttribute;
-    photos: MediaAttribute;
-    seo_title: StringAttribute;
-    seo_description: StringAttribute;
-    intro: TextAttribute;
-    pricing: ComponentAttribute<'details.price', true>;
-    location: StringAttribute;
-    thumbnail: MediaAttribute & RequiredAttribute;
-    slug: UIDAttribute<'api::therapy.therapy', 'name'> & RequiredAttribute;
-    seo_keywords: ComponentAttribute<'details.keywords', true> &
-      SetMinMax<{
-        max: 5;
-      }>;
-    rank: IntegerAttribute;
     createdAt: DateTimeAttribute;
     updatedAt: DateTimeAttribute;
     publishedAt: DateTimeAttribute;
     createdBy: RelationAttribute<
-      'api::therapy.therapy',
+      'api::seminar.seminar',
       'oneToOne',
       'admin::user'
     > &
       PrivateAttribute;
     updatedBy: RelationAttribute<
-      'api::therapy.therapy',
+      'api::seminar.seminar',
       'oneToOne',
       'admin::user'
     > &
@@ -989,7 +1039,6 @@ export interface ApiTrainingTraining extends CollectionTypeSchema {
       'api::intervention.intervention'
     >;
     photos: MediaAttribute;
-    pricing: ComponentAttribute<'details.price', true>;
     location: StringAttribute;
     slug: UIDAttribute<'api::training.training', 'name'> & RequiredAttribute;
     seo_description: StringAttribute;
@@ -1001,6 +1050,12 @@ export interface ApiTrainingTraining extends CollectionTypeSchema {
         max: 5;
       }>;
     rank: IntegerAttribute;
+    pricings: RelationAttribute<
+      'api::training.training',
+      'manyToMany',
+      'api::pricing.pricing'
+    >;
+    content: RichTextAttribute;
     createdAt: DateTimeAttribute;
     updatedAt: DateTimeAttribute;
     publishedAt: DateTimeAttribute;
@@ -1068,12 +1123,13 @@ declare global {
       'plugin::users-permissions.user': PluginUsersPermissionsUser;
       'api::animal.animal': ApiAnimalAnimal;
       'api::coach.coach': ApiCoachCoach;
-      'api::coaching.coaching': ApiCoachingCoaching;
+      'api::farm.farm': ApiFarmFarm;
       'api::intervention.intervention': ApiInterventionIntervention;
       'api::membership.membership': ApiMembershipMembership;
       'api::message.message': ApiMessageMessage;
+      'api::pricing.pricing': ApiPricingPricing;
+      'api::program.program': ApiProgramProgram;
       'api::seminar.seminar': ApiSeminarSeminar;
-      'api::therapy.therapy': ApiTherapyTherapy;
       'api::training.training': ApiTrainingTraining;
       'details.keywords': DetailsKeywords;
       'details.moment': DetailsMoment;

@@ -1,0 +1,31 @@
+{
+  "kind": "singleType",
+  "collectionName": "farms",
+  "info": {
+    "singularName": "farm",
+    "pluralName": "farms",
+    "displayName": "Boerderij"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "name": {
+      "type": "string"
+    },
+    "content": {
+      "type": "richtext"
+    },
+    "photos": {
+      "allowedTypes": [
+        "images"
+      ],
+      "type": "media",
+      "multiple": true
+    },
+    "intro": {
+      "type": "text"
+    }
+  }
+}
