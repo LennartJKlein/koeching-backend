@@ -1,14 +1,27 @@
 {
   "collectionName": "components_details_moments",
   "info": {
-    "displayName": "Moment",
-    "icon": "calendar-day",
+    "displayName": "Groep",
+    "icon": "chart-bubble",
     "description": ""
   },
   "options": {},
   "attributes": {
-    "date": {
+    "start_date": {
       "type": "datetime"
+    },
+    "end_date": {
+      "type": "datetime"
+    },
+    "title": {
+      "type": "string"
+    },
+    "description": {
+      "type": "richtext"
+    },
+    "open": {
+      "type": "boolean",
+      "default": true
     }
   }
 }
