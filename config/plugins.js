@@ -17,4 +17,7 @@ module.exports = ({ env }) => ({
   'drag-drop-content-types': {
     enabled: true
   },
+  'import-export-entries': {
+    enabled: true,
+  },
 });

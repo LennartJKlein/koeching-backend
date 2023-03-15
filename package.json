@@ -12,13 +12,16 @@
   },
   "dependencies": {
     "@retikolo/drag-drop-content-types": "1.2.1",
-    "@strapi/plugin-i18n": "4.6.0",
-    "@strapi/plugin-users-permissions": "4.6.0",
-    "@strapi/provider-upload-cloudinary": "4.6.0",
-    "@strapi/strapi": "4.6.0",
+    "@strapi/plugin-i18n": "4.7.1",
+    "@strapi/plugin-users-permissions": "4.7.1",
+    "@strapi/provider-upload-cloudinary": "4.7.1",
+    "@strapi/strapi": "4.7.1",
     "better-sqlite3": "7.4.6",
     "pg": "8.8.0",
-    "pg-connection-string": "2.5.0"
+    "pg-connection-string": "2.5.0",
+    "request": "^2.88.2",
+    "strapi-plugin-import-export-entries": "^1.18.0",
+    "strapi-tiptap-editor": "^0.9.11"
   },
   "author": {
     "name": "Lennart Klein"

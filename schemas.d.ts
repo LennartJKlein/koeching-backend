@@ -276,6 +276,108 @@ export interface AdminApiTokenPermission extends CollectionTypeSchema {
   };
 }
 
+export interface AdminTransferToken extends CollectionTypeSchema {
+  info: {
+    name: "Transfer Token";
+    singularName: "transfer-token";
+    pluralName: "transfer-tokens";
+    displayName: "Transfer Token";
+    description: "";
+  };
+  pluginOptions: {
+    "content-manager": {
+      visible: false;
+    };
+    "content-type-builder": {
+      visible: false;
+    };
+  };
+  attributes: {
+    name: StringAttribute &
+      RequiredAttribute &
+      UniqueAttribute &
+      SetMinMaxLength<{
+        minLength: 1;
+      }>;
+    description: StringAttribute &
+      SetMinMaxLength<{
+        minLength: 1;
+      }> &
+      DefaultTo<"">;
+    accessKey: StringAttribute &
+      RequiredAttribute &
+      SetMinMaxLength<{
+        minLength: 1;
+      }>;
+    lastUsedAt: DateTimeAttribute;
+    permissions: RelationAttribute<
+      "admin::transfer-token",
+      "oneToMany",
+      "admin::transfer-token-permission"
+    >;
+    expiresAt: DateTimeAttribute;
+    lifespan: BigIntegerAttribute;
+    createdAt: DateTimeAttribute;
+    updatedAt: DateTimeAttribute;
+    createdBy: RelationAttribute<
+      "admin::transfer-token",
+      "oneToOne",
+      "admin::user"
+    > &
+      PrivateAttribute;
+    updatedBy: RelationAttribute<
+      "admin::transfer-token",
+      "oneToOne",
+      "admin::user"
+    > &
+      PrivateAttribute;
+  };
+}
+
+export interface AdminTransferTokenPermission extends CollectionTypeSchema {
+  info: {
+    name: "Transfer Token Permission";
+    description: "";
+    singularName: "transfer-token-permission";
+    pluralName: "transfer-token-permissions";
+    displayName: "Transfer Token Permission";
+  };
+  pluginOptions: {
+    "content-manager": {
+      visible: false;
+    };
+    "content-type-builder": {
+      visible: false;
+    };
+  };
+  attributes: {
+    action: StringAttribute &
+      RequiredAttribute &
+      SetMinMaxLength<{
+        minLength: 1;
+      }>;
+    token: RelationAttribute<
+      "admin::transfer-token-permission",
+      "manyToOne",
+      "admin::transfer-token"
+    >;
+    createdAt: DateTimeAttribute;
+    updatedAt: DateTimeAttribute;
+    createdBy: RelationAttribute<
+      "admin::transfer-token-permission",
+      "oneToOne",
+      "admin::user"
+    > &
+      PrivateAttribute;
+    updatedBy: RelationAttribute<
+      "admin::transfer-token-permission",
+      "oneToOne",
+      "admin::user"
+    > &
+      PrivateAttribute;
+  };
+}
+
 export interface PluginUploadFile extends CollectionTypeSchema {
   info: {
     singularName: "file";
@@ -846,6 +948,51 @@ export interface ApiMessageMessage extends CollectionTypeSchema {
   };
 }
 
+export interface ApiParticipantParticipant extends CollectionTypeSchema {
+  info: {
+    singularName: "participant";
+    pluralName: "participants";
+    displayName: "Aanmelding";
+    description: "";
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    seminar: RelationAttribute<
+      "api::participant.participant",
+      "oneToOne",
+      "api::seminar.seminar"
+    >;
+    training: RelationAttribute<
+      "api::participant.participant",
+      "oneToOne",
+      "api::training.training"
+    >;
+    moment: ComponentAttribute<"details.moment">;
+    payment: BooleanAttribute;
+    pricing: StringAttribute;
+    comments: TextAttribute;
+    contact: ComponentAttribute<"details.contact">;
+    participants: ComponentAttribute<"details.participants", true>;
+    createdAt: DateTimeAttribute;
+    updatedAt: DateTimeAttribute;
+    publishedAt: DateTimeAttribute;
+    createdBy: RelationAttribute<
+      "api::participant.participant",
+      "oneToOne",
+      "admin::user"
+    > &
+      PrivateAttribute;
+    updatedBy: RelationAttribute<
+      "api::participant.participant",
+      "oneToOne",
+      "admin::user"
+    > &
+      PrivateAttribute;
+  };
+}
+
 export interface ApiPricingPricing extends CollectionTypeSchema {
   info: {
     singularName: "pricing";
@@ -1075,6 +1222,30 @@ export interface ApiTrainingTraining extends CollectionTypeSchema {
   };
 }
 
+export interface DetailsAddress extends ComponentSchema {
+  info: {
+    displayName: "address";
+  };
+  attributes: {
+    street: StringAttribute;
+    streetNr: StringAttribute;
+    postalCode: StringAttribute;
+    city: StringAttribute;
+  };
+}
+
+export interface DetailsContact extends ComponentSchema {
+  info: {
+    displayName: "contact";
+  };
+  attributes: {
+    name: StringAttribute;
+    phone: StringAttribute;
+    address: ComponentAttribute<"details.address">;
+    email: EmailAttribute;
+  };
+}
+
 export interface DetailsKeywords extends ComponentSchema {
   info: {
     displayName: "Sleutelwoorden";
@@ -1088,7 +1259,7 @@ export interface DetailsKeywords extends ComponentSchema {
 
 export interface DetailsMoment extends ComponentSchema {
   info: {
-    displayName: "Gebeurtenis";
+    displayName: "Groep";
     icon: "chart-bubble";
     description: "";
   };
@@ -1098,6 +1269,16 @@ export interface DetailsMoment extends ComponentSchema {
     title: StringAttribute;
     description: RichTextAttribute;
     open: BooleanAttribute & DefaultTo<true>;
+  };
+}
+
+export interface DetailsParticipants extends ComponentSchema {
+  info: {
+    displayName: "participants";
+  };
+  attributes: {
+    name: StringAttribute;
+    age: IntegerAttribute;
   };
 }
 
@@ -1120,6 +1301,8 @@ declare global {
       "admin::role": AdminRole;
       "admin::api-token": AdminApiToken;
       "admin::api-token-permission": AdminApiTokenPermission;
+      "admin::transfer-token": AdminTransferToken;
+      "admin::transfer-token-permission": AdminTransferTokenPermission;
       "plugin::upload.file": PluginUploadFile;
       "plugin::upload.folder": PluginUploadFolder;
       "plugin::i18n.locale": PluginI18NLocale;
@@ -1132,12 +1315,16 @@ declare global {
       "api::intervention.intervention": ApiInterventionIntervention;
       "api::membership.membership": ApiMembershipMembership;
       "api::message.message": ApiMessageMessage;
+      "api::participant.participant": ApiParticipantParticipant;
       "api::pricing.pricing": ApiPricingPricing;
       "api::program.program": ApiProgramProgram;
       "api::seminar.seminar": ApiSeminarSeminar;
       "api::training.training": ApiTrainingTraining;
+      "details.address": DetailsAddress;
+      "details.contact": DetailsContact;
       "details.keywords": DetailsKeywords;
       "details.moment": DetailsMoment;
+      "details.participants": DetailsParticipants;
       "details.price": DetailsPrice;
     }
   }

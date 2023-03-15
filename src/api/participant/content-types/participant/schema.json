@@ -1,0 +1,49 @@
+{
+  "kind": "collectionType",
+  "collectionName": "participants",
+  "info": {
+    "singularName": "participant",
+    "pluralName": "participants",
+    "displayName": "Aanmelding",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "seminar": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::seminar.seminar"
+    },
+    "training": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::training.training"
+    },
+    "moment": {
+      "type": "component",
+      "repeatable": false,
+      "component": "details.moment"
+    },
+    "payment": {
+      "type": "boolean"
+    },
+    "comments": {
+      "type": "text"
+    },
+    "contact": {
+      "displayName": "contact",
+      "type": "component",
+      "repeatable": false,
+      "component": "details.contact"
+    },
+    "participants": {
+      "displayName": "participants",
+      "type": "component",
+      "repeatable": true,
+      "component": "details.participants"
+    }
+  }
+}

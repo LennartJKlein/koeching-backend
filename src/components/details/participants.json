@@ -1,0 +1,15 @@
+{
+  "collectionName": "components_details_participants",
+  "info": {
+    "displayName": "participants"
+  },
+  "options": {},
+  "attributes": {
+    "name": {
+      "type": "string"
+    },
+    "age": {
+      "type": "integer"
+    }
+  }
+}
