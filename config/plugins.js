@@ -20,4 +20,8 @@ module.exports = ({ env }) => ({
   'import-export-entries': {
     enabled: true,
   },
+  'wysiwyg': {
+    enabled: true,
+    resolve: './src/plugins/wysiwyg'
+  },
 });
