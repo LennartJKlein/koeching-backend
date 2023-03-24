@@ -816,6 +816,7 @@ export interface ApiHomepageHomepage extends SingleTypeSchema {
         min: 1;
         max: 3;
       }>;
+    title: StringAttribute & RequiredAttribute;
     createdAt: DateTimeAttribute;
     updatedAt: DateTimeAttribute;
     publishedAt: DateTimeAttribute;

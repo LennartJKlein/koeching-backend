@@ -28,6 +28,10 @@
       "max": 3,
       "required": false,
       "min": 1
+    },
+    "title": {
+      "type": "string",
+      "required": true
     }
   }
 }
