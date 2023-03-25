@@ -32,6 +32,12 @@
     "title": {
       "type": "string",
       "required": true
+    },
+    "videos": {
+      "displayName": "Youtube video",
+      "type": "component",
+      "repeatable": true,
+      "component": "content.youtube-video"
     }
   }
 }
