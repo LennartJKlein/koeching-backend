@@ -1,0 +1,27 @@
+{
+  "kind": "singleType",
+  "collectionName": "reimbursements",
+  "info": {
+    "singularName": "reimbursement",
+    "pluralName": "reimbursements",
+    "displayName": "Vergoedingen",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "files": {
+      "type": "media",
+      "multiple": true,
+      "required": false,
+      "allowedTypes": [
+        "files"
+      ]
+    },
+    "content": {
+      "type": "richtext"
+    }
+  }
+}

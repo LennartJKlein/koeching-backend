@@ -16,7 +16,7 @@ const TinyEditor = ({ onChange, name, value }) => {
         branding: false,
         contextmenu: false,
         menubar: false,
-        plugins: "editimage preview lists link autolink",
+        plugins: "preview lists link autolink",
         selector: "textarea",
         block_formats: "Alinea=p; Kop=h2; Tussenkop=h3",
         skin: window.matchMedia("(prefers-color-scheme: dark)").matches

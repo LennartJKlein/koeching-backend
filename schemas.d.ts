@@ -1142,6 +1142,37 @@ export interface ApiProgramProgram extends CollectionTypeSchema {
   };
 }
 
+export interface ApiReimbursementReimbursement extends SingleTypeSchema {
+  info: {
+    singularName: 'reimbursement';
+    pluralName: 'reimbursements';
+    displayName: 'Vergoedingen';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    files: MediaAttribute;
+    content: RichTextAttribute;
+    createdAt: DateTimeAttribute;
+    updatedAt: DateTimeAttribute;
+    publishedAt: DateTimeAttribute;
+    createdBy: RelationAttribute<
+      'api::reimbursement.reimbursement',
+      'oneToOne',
+      'admin::user'
+    > &
+      PrivateAttribute;
+    updatedBy: RelationAttribute<
+      'api::reimbursement.reimbursement',
+      'oneToOne',
+      'admin::user'
+    > &
+      PrivateAttribute;
+  };
+}
+
 export interface ApiSeminarSeminar extends CollectionTypeSchema {
   info: {
     singularName: 'seminar';
@@ -1377,6 +1408,7 @@ declare global {
       'api::participant.participant': ApiParticipantParticipant;
       'api::pricing.pricing': ApiPricingPricing;
       'api::program.program': ApiProgramProgram;
+      'api::reimbursement.reimbursement': ApiReimbursementReimbursement;
       'api::seminar.seminar': ApiSeminarSeminar;
       'api::training.training': ApiTrainingTraining;
       'content.paragraph': ContentParagraph;
