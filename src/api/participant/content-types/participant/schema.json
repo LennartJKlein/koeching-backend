@@ -47,6 +47,11 @@
     },
     "rank": {
       "type": "integer"
+    },
+    "activity": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::activity.activity"
     }
   }
 }

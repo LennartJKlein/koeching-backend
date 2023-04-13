@@ -62,6 +62,12 @@
       "relation": "manyToMany",
       "target": "api::intervention.intervention",
       "inversedBy": "coaches"
+    },
+    "activities": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::activity.activity",
+      "mappedBy": "coaches"
     }
   }
 }

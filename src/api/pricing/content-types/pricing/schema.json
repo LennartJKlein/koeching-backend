@@ -44,6 +44,12 @@
     },
     "rank": {
       "type": "integer"
+    },
+    "activities": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::activity.activity",
+      "mappedBy": "pricings"
     }
   }
 }

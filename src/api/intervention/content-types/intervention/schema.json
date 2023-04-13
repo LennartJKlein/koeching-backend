@@ -90,6 +90,12 @@
       "relation": "manyToMany",
       "target": "api::coach.coach",
       "mappedBy": "interventions"
+    },
+    "activities": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::activity.activity",
+      "mappedBy": "interventions"
     }
   }
 }

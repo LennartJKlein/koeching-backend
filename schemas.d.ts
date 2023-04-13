@@ -17,12 +17,12 @@ import {
   IntegerAttribute,
   DecimalAttribute,
   SetMinMax,
+  ComponentAttribute,
   MediaAttribute,
   UIDAttribute,
-  RichTextAttribute,
   TextAttribute,
+  RichTextAttribute,
   SingleTypeSchema,
-  ComponentAttribute,
   ComponentSchema,
 } from '@strapi/strapi';
 
@@ -686,6 +686,65 @@ export interface PluginUsersPermissionsUser extends CollectionTypeSchema {
   };
 }
 
+export interface ApiActivityActivity extends CollectionTypeSchema {
+  info: {
+    singularName: 'activity';
+    pluralName: 'activities';
+    displayName: 'Activiteit';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    name: StringAttribute & RequiredAttribute;
+    moments: ComponentAttribute<'details.moment', true>;
+    coaches: RelationAttribute<
+      'api::activity.activity',
+      'manyToMany',
+      'api::coach.coach'
+    >;
+    interventions: RelationAttribute<
+      'api::activity.activity',
+      'manyToMany',
+      'api::intervention.intervention'
+    >;
+    photos: MediaAttribute;
+    location: StringAttribute;
+    slug: UIDAttribute<'api::activity.activity', 'name'>;
+    seo_description: StringAttribute;
+    seo_title: StringAttribute;
+    intro: TextAttribute;
+    thumbnail: MediaAttribute;
+    seo_keywords: ComponentAttribute<'details.keywords', true> &
+      SetMinMax<{
+        max: 5;
+      }>;
+    rank: IntegerAttribute;
+    pricings: RelationAttribute<
+      'api::activity.activity',
+      'manyToMany',
+      'api::pricing.pricing'
+    >;
+    content: RichTextAttribute;
+    createdAt: DateTimeAttribute;
+    updatedAt: DateTimeAttribute;
+    publishedAt: DateTimeAttribute;
+    createdBy: RelationAttribute<
+      'api::activity.activity',
+      'oneToOne',
+      'admin::user'
+    > &
+      PrivateAttribute;
+    updatedBy: RelationAttribute<
+      'api::activity.activity',
+      'oneToOne',
+      'admin::user'
+    > &
+      PrivateAttribute;
+  };
+}
+
 export interface ApiAnimalAnimal extends CollectionTypeSchema {
   info: {
     singularName: 'animal';
@@ -756,6 +815,11 @@ export interface ApiCoachCoach extends CollectionTypeSchema {
       'api::coach.coach',
       'manyToMany',
       'api::intervention.intervention'
+    >;
+    activities: RelationAttribute<
+      'api::coach.coach',
+      'manyToMany',
+      'api::activity.activity'
     >;
     createdAt: DateTimeAttribute;
     updatedAt: DateTimeAttribute;
@@ -887,6 +951,11 @@ export interface ApiInterventionIntervention extends CollectionTypeSchema {
       'manyToMany',
       'api::coach.coach'
     >;
+    activities: RelationAttribute<
+      'api::intervention.intervention',
+      'manyToMany',
+      'api::activity.activity'
+    >;
     createdAt: DateTimeAttribute;
     updatedAt: DateTimeAttribute;
     publishedAt: DateTimeAttribute;
@@ -1012,6 +1081,11 @@ export interface ApiParticipantParticipant extends CollectionTypeSchema {
     contact: ComponentAttribute<'details.contact'>;
     participants: ComponentAttribute<'details.participants', true>;
     rank: IntegerAttribute;
+    activity: RelationAttribute<
+      'api::participant.participant',
+      'oneToOne',
+      'api::activity.activity'
+    >;
     createdAt: DateTimeAttribute;
     updatedAt: DateTimeAttribute;
     publishedAt: DateTimeAttribute;
@@ -1066,6 +1140,11 @@ export interface ApiPricingPricing extends CollectionTypeSchema {
       'api::intervention.intervention'
     >;
     rank: IntegerAttribute;
+    activities: RelationAttribute<
+      'api::pricing.pricing',
+      'manyToMany',
+      'api::activity.activity'
+    >;
     createdAt: DateTimeAttribute;
     updatedAt: DateTimeAttribute;
     publishedAt: DateTimeAttribute;
@@ -1398,6 +1477,7 @@ declare global {
       'plugin::users-permissions.permission': PluginUsersPermissionsPermission;
       'plugin::users-permissions.role': PluginUsersPermissionsRole;
       'plugin::users-permissions.user': PluginUsersPermissionsUser;
+      'api::activity.activity': ApiActivityActivity;
       'api::animal.animal': ApiAnimalAnimal;
       'api::coach.coach': ApiCoachCoach;
       'api::farm.farm': ApiFarmFarm;

@@ -1,10 +1,10 @@
 {
   "kind": "collectionType",
-  "collectionName": "trainings",
+  "collectionName": "activities",
   "info": {
-    "singularName": "training",
-    "pluralName": "trainings",
-    "displayName": "Training",
+    "singularName": "activity",
+    "pluralName": "activities",
+    "displayName": "Activiteit",
     "description": ""
   },
   "options": {
@@ -25,13 +25,13 @@
       "type": "relation",
       "relation": "manyToMany",
       "target": "api::coach.coach",
-      "inversedBy": "trainings"
+      "inversedBy": "activities"
     },
     "interventions": {
       "type": "relation",
       "relation": "manyToMany",
       "target": "api::intervention.intervention",
-      "mappedBy": "trainings"
+      "inversedBy": "activities"
     },
     "photos": {
       "type": "media",
@@ -46,8 +46,7 @@
     },
     "slug": {
       "type": "uid",
-      "targetField": "name",
-      "required": true
+      "targetField": "name"
     },
     "seo_description": {
       "type": "string"
@@ -61,7 +60,7 @@
     "thumbnail": {
       "type": "media",
       "multiple": false,
-      "required": true,
+      "required": false,
       "allowedTypes": [
         "images"
       ]
@@ -79,7 +78,7 @@
       "type": "relation",
       "relation": "manyToMany",
       "target": "api::pricing.pricing",
-      "inversedBy": "trainings"
+      "inversedBy": "activities"
     },
     "content": {
       "type": "richtext"
