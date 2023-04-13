@@ -821,6 +821,7 @@ export interface ApiCoachCoach extends CollectionTypeSchema {
       'manyToMany',
       'api::activity.activity'
     >;
+    external: BooleanAttribute & DefaultTo<false>;
     createdAt: DateTimeAttribute;
     updatedAt: DateTimeAttribute;
     publishedAt: DateTimeAttribute;

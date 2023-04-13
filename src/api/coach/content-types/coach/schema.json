@@ -68,6 +68,10 @@
       "relation": "manyToMany",
       "target": "api::activity.activity",
       "mappedBy": "coaches"
+    },
+    "external": {
+      "type": "boolean",
+      "default": false
     }
   }
 }
