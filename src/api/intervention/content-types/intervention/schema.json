@@ -40,7 +40,7 @@
       "type": "string"
     },
     "seo_description": {
-      "type": "string"
+      "type": "text"
     },
     "seo_keywords": {
       "type": "component",

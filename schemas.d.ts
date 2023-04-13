@@ -712,7 +712,7 @@ export interface ApiActivityActivity extends CollectionTypeSchema {
     photos: MediaAttribute;
     location: StringAttribute;
     slug: UIDAttribute<'api::activity.activity', 'name'>;
-    seo_description: StringAttribute;
+    seo_description: TextAttribute;
     seo_title: StringAttribute;
     intro: TextAttribute;
     thumbnail: MediaAttribute;
@@ -927,7 +927,7 @@ export interface ApiInterventionIntervention extends CollectionTypeSchema {
     >;
     rank: IntegerAttribute;
     seo_title: StringAttribute;
-    seo_description: StringAttribute;
+    seo_description: TextAttribute;
     seo_keywords: ComponentAttribute<'details.keywords', true> &
       SetMinMax<{
         max: 5;
@@ -1031,7 +1031,7 @@ export interface ApiMessageMessage extends CollectionTypeSchema {
       'admin::user'
     >;
     seo_title: StringAttribute;
-    seo_description: StringAttribute;
+    seo_description: TextAttribute;
     slug: UIDAttribute<'api::message.message', 'title'>;
     seo_keywords: ComponentAttribute<'details.keywords', true> &
       SetMinMax<{
@@ -1179,7 +1179,7 @@ export interface ApiProgramProgram extends CollectionTypeSchema {
     intro: TextAttribute;
     content: RichTextAttribute;
     seo_title: StringAttribute;
-    seo_description: StringAttribute;
+    seo_description: TextAttribute;
     coaches: RelationAttribute<
       'api::program.program',
       'manyToMany',
@@ -1277,7 +1277,7 @@ export interface ApiSeminarSeminar extends CollectionTypeSchema {
       'api::intervention.intervention'
     >;
     intro: TextAttribute;
-    seo_description: StringAttribute;
+    seo_description: TextAttribute;
     seo_title: StringAttribute;
     slug: UIDAttribute<'api::seminar.seminar', 'name'> & RequiredAttribute;
     thumbnail: MediaAttribute & RequiredAttribute;
@@ -1338,7 +1338,7 @@ export interface ApiTrainingTraining extends CollectionTypeSchema {
     photos: MediaAttribute;
     location: StringAttribute;
     slug: UIDAttribute<'api::training.training', 'name'> & RequiredAttribute;
-    seo_description: StringAttribute;
+    seo_description: TextAttribute;
     seo_title: StringAttribute;
     intro: TextAttribute;
     thumbnail: MediaAttribute & RequiredAttribute;

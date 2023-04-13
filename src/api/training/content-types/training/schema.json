@@ -50,7 +50,7 @@
       "required": true
     },
     "seo_description": {
-      "type": "string"
+      "type": "text"
     },
     "seo_title": {
       "type": "string"

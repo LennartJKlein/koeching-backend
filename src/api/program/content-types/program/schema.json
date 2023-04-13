@@ -26,7 +26,7 @@
       "type": "string"
     },
     "seo_description": {
-      "type": "string"
+      "type": "text"
     },
     "coaches": {
       "type": "relation",

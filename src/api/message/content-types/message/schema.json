@@ -39,7 +39,7 @@
       "type": "string"
     },
     "seo_description": {
-      "type": "string"
+      "type": "text"
     },
     "slug": {
       "type": "uid",
