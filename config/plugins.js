@@ -1,5 +1,17 @@
 module.exports = ({ env }) => ({
-  upload: {
+  'drag-drop-content-types': {
+    enabled: true
+  },
+  'import-export-entries': {
+    enabled: true,
+  },
+	'publisher': {
+		enabled: true,
+    beforePublish: async ({ strapi, uid, entity }) => {
+      console.log(entity)
+    },
+	},
+  'upload': {
     config: {
       provider: 'cloudinary',
       providerOptions: {
@@ -13,12 +25,6 @@ module.exports = ({ env }) => ({
         delete: {},
       },
     },
-  },
-  'drag-drop-content-types': {
-    enabled: true
-  },
-  'import-export-entries': {
-    enabled: true,
   },
   'wysiwyg': {
     enabled: true,

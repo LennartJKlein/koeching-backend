@@ -21,7 +21,8 @@
     "pg": "8.8.0",
     "pg-connection-string": "2.5.0",
     "request": "^2.88.2",
-    "strapi-plugin-import-export-entries": "^1.18.0"
+    "strapi-plugin-import-export-entries": "^1.18.0",
+    "strapi-plugin-publisher": "^1.3.3"
   },
   "author": {
     "name": "Lennart Klein"
