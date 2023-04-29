@@ -19,12 +19,8 @@ const TinyEditor = ({ onChange, name, value }) => {
         plugins: "preview lists link autolink",
         selector: "textarea",
         block_formats: "Alinea=p; Kop=h2; Tussenkop=h3",
-        skin: window.matchMedia("(prefers-color-scheme: dark)").matches
-          ? "oxide-dark"
-          : "",
-        content_css: window.matchMedia("(prefers-color-scheme: dark)").matches
-          ? "dark"
-          : "",
+        skin: "oxide-dark",
+        content_css: "dark",
         toolbar: "undo redo | blocks bold italic bullist numlist | link",
         default_link_target: "_blank",
       }}
