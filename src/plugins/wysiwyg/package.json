@@ -12,6 +12,7 @@
     "@strapi/design-system": "^1.6.5",
     "@strapi/helper-plugin": "^4.8.2",
     "@strapi/icons": "^1.6.5",
+    "@tinymce/tinymce-react": "^4.3.0",
     "prop-types": "^15.7.2"
   },
   "devDependencies": {
