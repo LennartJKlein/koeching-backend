@@ -12,12 +12,13 @@
 		"type": "git",
 		"url": "https://github.com/plantagoIT/strapi-drag-drop-content-type-plugin"
 	},
-	"peerDependencies": {
-		"@strapi/strapi": "^4.0.0"
-	},
 	"dependencies": {
 		"array-move": "^4.0.0",
 		"react-sortable-hoc": "^2.0.0"
+	},
+	"peerDependencies": {
+		"@strapi/strapi": "^4.0.0",
+    "react": "^17.0.2"
 	},
 	"author": {
 		"name": "Aeneas Meier",
@@ -29,19 +30,10 @@
 			"name": "Aeneas Meier",
 			"email": "aeneas@retikolo.xyz",
 			"url": "https://rgb.retikolo.xyz"
-		}
-	],
-	"keywords": [
-		"strapi",
-		"plugin",
-		"strapi-plugin",
-		"drag",
-		"drop",
-		"drag and drop",
-		"drag drop content types",
-		"content types",
-		"sort",
-		"order"
+		},
+    {
+      "name": "Lennart Klein"
+    }
 	],
 	"engines": {
 		"node": ">=14.19.1 <=18.x.x",
