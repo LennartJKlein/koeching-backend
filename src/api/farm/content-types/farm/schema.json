@@ -4,7 +4,8 @@
   "info": {
     "singularName": "farm",
     "pluralName": "farms",
-    "displayName": "Boerderij"
+    "displayName": "Boerderij",
+    "description": ""
   },
   "options": {
     "draftAndPublish": true
@@ -12,17 +13,20 @@
   "pluginOptions": {},
   "attributes": {
     "name": {
-      "type": "string"
+      "type": "string",
+      "required": true,
+      "default": "Boerderij Borreveld"
     },
     "content": {
       "type": "richtext"
     },
     "photos": {
+      "type": "media",
+      "multiple": true,
+      "required": false,
       "allowedTypes": [
         "images"
-      ],
-      "type": "media",
-      "multiple": true
+      ]
     },
     "intro": {
       "type": "text"
