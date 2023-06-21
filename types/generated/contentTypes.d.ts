@@ -1256,9 +1256,10 @@ export interface ApiProcessProcess extends Schema.SingleType {
     name: Attribute.String &
       Attribute.Required &
       Attribute.DefaultTo<'Werkwijze'>;
-    content: Attribute.RichText;
+    content_adults: Attribute.RichText;
     photos: Attribute.Media;
     intro: Attribute.Text;
+    content_minors: Attribute.RichText;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;

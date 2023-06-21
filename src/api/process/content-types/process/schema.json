@@ -17,7 +17,7 @@
       "required": true,
       "default": "Werkwijze"
     },
-    "content": {
+    "content_adults": {
       "type": "richtext"
     },
     "photos": {
@@ -30,6 +30,9 @@
     },
     "intro": {
       "type": "text"
+    },
+    "content_minors": {
+      "type": "richtext"
     }
   }
 }
